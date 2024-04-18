@@ -50,4 +50,12 @@ CREATE TABLE clients(
 INSERT INTO clients(name)
 VALUES ('John');
 
+CREATE TRIGGER calculate_bonus
+    AFTER INSERT ON products
+    FOR EACH ROW
+    BEGIN ATOMIC
+    DECLARE total_sales DECIMAL (10, 2);
+
+    SELECT SUM(price * stock_quantity)
+
 DROP DATABASE if exists vinho_ecommerce;
